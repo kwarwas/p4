@@ -141,7 +141,7 @@ Reveal.addEventListener( 'ready', function() {
 
 	test( 'Reveal.getSlideNotes', function() {
 		Reveal.slide( 0, 0 );
-		ok( Reveal.getSlideNotes() === 'speaker notes 1', 'works with <aside class="notes">' );
+		ok( Reveal.getSlideNotes() === 'speaker notes 1', 'works with <aside class-basic="notes">' );
 
 		Reveal.slide( 1, 0 );
 		ok( Reveal.getSlideNotes() === 'speaker notes 2', 'works with <section data-notes="">' );

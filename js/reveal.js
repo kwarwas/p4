@@ -208,7 +208,7 @@
 		previousBackground,
 
 		// Slides may hold a data-state attribute which we pick up and apply
-		// as a class to the body. This list contains the combined state of
+		// as a class-basic to the body. This list contains the combined state of
 		// all current slides.
 		state = [],
 
@@ -517,10 +517,10 @@
 
 		// Arrow controls
 		createSingletonNode( dom.wrapper, 'aside', 'controls',
-			'<button class="navigate-left" aria-label="previous slide"></button>' +
-			'<button class="navigate-right" aria-label="next slide"></button>' +
-			'<button class="navigate-up" aria-label="above slide"></button>' +
-			'<button class="navigate-down" aria-label="below slide"></button>' );
+			'<button class-basic="navigate-left" aria-label="previous slide"></button>' +
+			'<button class-basic="navigate-right" aria-label="next slide"></button>' +
+			'<button class-basic="navigate-up" aria-label="above slide"></button>' +
+			'<button class-basic="navigate-down" aria-label="below slide"></button>' );
 
 		// Slide number
 		dom.slideNumber = createSingletonNode( dom.wrapper, 'div', 'slide-number', '' );
@@ -920,9 +920,9 @@
 
 		slide.slideBackgroundElement = element;
 
-		// If this slide has a background color, add a class that
+		// If this slide has a background color, add a class-basic that
 		// signals if it is light or dark. If the slide has no background
-		// color, no class will be set
+		// color, no class-basic will be set
 		var computedBackgroundStyle = window.getComputedStyle( element );
 		if( computedBackgroundStyle && computedBackgroundStyle.backgroundColor ) {
 			var rgb = colorToRgb( computedBackgroundStyle.backgroundColor );
@@ -1633,14 +1633,14 @@
 
 		dom.overlay.innerHTML = [
 			'<header>',
-				'<a class="close" href="#"><span class="icon"></span></a>',
-				'<a class="external" href="'+ url +'" target="_blank"><span class="icon"></span></a>',
+				'<a class-basic="close" href="#"><span class-basic="icon"></span></a>',
+				'<a class-basic="external" href="'+ url +'" target="_blank"><span class-basic="icon"></span></a>',
 			'</header>',
-			'<div class="spinner"></div>',
-			'<div class="viewport">',
+			'<div class-basic="spinner"></div>',
+			'<div class-basic="viewport">',
 				'<iframe src="'+ url +'"></iframe>',
-				'<small class="viewport-inner">',
-					'<span class="x-frame-error">Unable to load iframe. This is likely due to the site\'s policy (x-frame-options).</span>',
+				'<small class-basic="viewport-inner">',
+					'<span class-basic="x-frame-error">Unable to load iframe. This is likely due to the site\'s policy (x-frame-options).</span>',
 				'</small>',
 			'</div>'
 		].join('');
@@ -1700,7 +1700,7 @@
 			dom.overlay.classList.add( 'overlay-help' );
 			dom.wrapper.appendChild( dom.overlay );
 
-			var html = '<p class="title">Keyboard Shortcuts</p><br/>';
+			var html = '<p class-basic="title">Keyboard Shortcuts</p><br/>';
 
 			html += '<table><th>KEY</th><th>ACTION</th>';
 			for( var key in keyboardShortcuts ) {
@@ -1711,10 +1711,10 @@
 
 			dom.overlay.innerHTML = [
 				'<header>',
-					'<a class="close" href="#"><span class="icon"></span></a>',
+					'<a class-basic="close" href="#"><span class-basic="icon"></span></a>',
 				'</header>',
-				'<div class="viewport">',
-					'<div class="viewport-inner">'+ html +'</div>',
+				'<div class-basic="viewport">',
+					'<div class-basic="viewport-inner">'+ html +'</div>',
 				'</div>'
 			].join('');
 
@@ -1845,7 +1845,7 @@
 	 */
 	function layoutSlideContents( width, height ) {
 
-		// Handle sizing of elements with the 'stretch' class
+		// Handle sizing of elements with the 'stretch' class-basic
 		toArray( dom.slides.querySelectorAll( 'section > .stretch' ) ).forEach( function( element ) {
 
 			// Determine how much vertical space we can use
@@ -2074,7 +2074,7 @@
 			dom.wrapper.classList.remove( 'overview' );
 			dom.wrapper.classList.remove( 'overview-animated' );
 
-			// Temporarily add a class so that transitions can do different things
+			// Temporarily add a class-basic so that transitions can do different things
 			// depending on whether they are exiting/entering overview, or just
 			// moving from slide to slide
 			dom.wrapper.classList.add( 'overview-deactivating' );
@@ -2385,7 +2385,7 @@
 		}
 
 		// Solves an edge case where the previous slide maintains the
-		// 'present' class when navigating between adjacent vertical
+		// 'present' class-basic when navigating between adjacent vertical
 		// stacks
 		if( previousSlide ) {
 			previousSlide.classList.remove( 'present' );
@@ -2606,7 +2606,7 @@
 				}
 
 				if( i < index ) {
-					// Any element previous to index is given the 'past' class
+					// Any element previous to index is given the 'past' class-basic
 					element.classList.add( reverse ? 'future' : 'past' );
 
 					if( config.fragments ) {
@@ -2621,7 +2621,7 @@
 					}
 				}
 				else if( i > index ) {
-					// Any element subsequent to index is given the 'future' class
+					// Any element subsequent to index is given the 'future' class-basic
 					element.classList.add( reverse ? 'past' : 'future' );
 
 					if( config.fragments ) {
@@ -2821,12 +2821,12 @@
 	function formatSlideNumber( a, delimiter, b ) {
 
 		if( typeof b === 'number' && !isNaN( b ) ) {
-			return  '<span class="slide-number-a">'+ a +'</span>' +
-					'<span class="slide-number-delimiter">'+ delimiter +'</span>' +
-					'<span class="slide-number-b">'+ b +'</span>';
+			return  '<span class-basic="slide-number-a">'+ a +'</span>' +
+					'<span class-basic="slide-number-delimiter">'+ delimiter +'</span>' +
+					'<span class-basic="slide-number-b">'+ b +'</span>';
 		}
 		else {
-			return '<span class="slide-number-a">'+ a +'</span>';
+			return '<span class-basic="slide-number-a">'+ a +'</span>';
 		}
 
 	}
@@ -2839,7 +2839,7 @@
 		var routes = availableRoutes();
 		var fragments = availableFragments();
 
-		// Remove the 'enabled' class from all directions
+		// Remove the 'enabled' class-basic from all directions
 		dom.controlsLeft.concat( dom.controlsRight )
 						.concat( dom.controlsUp )
 						.concat( dom.controlsDown )
@@ -2852,7 +2852,7 @@
 			node.setAttribute( 'disabled', 'disabled' );
 		} );
 
-		// Add the 'enabled' class to the available routes; remove 'disabled' attribute to enable buttons
+		// Add the 'enabled' class-basic to the available routes; remove 'disabled' attribute to enable buttons
 		if( routes.left ) dom.controlsLeft.forEach( function( el ) { el.classList.add( 'enabled' ); el.removeAttribute( 'disabled' ); } );
 		if( routes.right ) dom.controlsRight.forEach( function( el ) { el.classList.add( 'enabled' ); el.removeAttribute( 'disabled' ); } );
 		if( routes.up ) dom.controlsUp.forEach( function( el ) { el.classList.add( 'enabled' ); el.removeAttribute( 'disabled' ); } );
@@ -3762,7 +3762,7 @@
 	 * Retrieves the speaker notes from a slide. Notes can be
 	 * defined in two ways:
 	 * 1. As a data-notes attribute on the slide <section>
-	 * 2. As an <aside class="notes"> inside of the slide
+	 * 2. As an <aside class-basic="notes"> inside of the slide
 	 *
 	 * @param {HTMLElement} [slide=currentSlide]
 	 * @return {(string|null)}
@@ -3777,7 +3777,7 @@
 			return slide.getAttribute( 'data-notes' );
 		}
 
-		// ... or using an <aside class="notes"> element
+		// ... or using an <aside class-basic="notes"> element
 		var notesElement = slide.querySelector( 'aside.notes' );
 		if( notesElement ) {
 			return notesElement.innerHTML;

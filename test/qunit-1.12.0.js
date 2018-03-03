@@ -288,7 +288,7 @@ Test.prototype = {
 
 			// `b` initialized at top of scope
 			b = document.createElement( "strong" );
-			b.innerHTML = this.nameHtml + " <b class='counts'>(<b class='failed'>" + bad + "</b>, <b class='passed'>" + good + "</b>, " + this.assertions.length + ")</b>";
+			b.innerHTML = this.nameHtml + " <b class-basic='counts'>(<b class-basic='failed'>" + bad + "</b>, <b class-basic='passed'>" + good + "</b>, " + this.assertions.length + ")</b>";
 
 			addEvent(b, "click", function() {
 				var next = b.parentNode.lastChild,
@@ -403,7 +403,7 @@ QUnit = {
 
 	test: function( testName, expected, callback, async ) {
 		var test,
-			nameHtml = "<span class='test-name'>" + escapeText( testName ) + "</span>";
+			nameHtml = "<span class-basic='test-name'>" + escapeText( testName ) + "</span>";
 
 		if ( arguments.length === 2 ) {
 			callback = expected;
@@ -411,7 +411,7 @@ QUnit = {
 		}
 
 		if ( config.currentModule ) {
-			nameHtml = "<span class='module-name'>" + escapeText( config.currentModule ) + "</span>: " + nameHtml;
+			nameHtml = "<span class-basic='module-name'>" + escapeText( config.currentModule ) + "</span>: " + nameHtml;
 		}
 
 		test = new Test({
@@ -528,13 +528,13 @@ assert = {
 				message: msg
 			};
 
-		msg = "<span class='test-message'>" + escapeText( msg ) + "</span>";
+		msg = "<span class-basic='test-message'>" + escapeText( msg ) + "</span>";
 
 		if ( !result ) {
 			source = sourceFromStacktrace( 2 );
 			if ( source ) {
 				details.source = source;
-				msg += "<table><tr class='test-source'><th>Source: </th><td><pre>" + escapeText( source ) + "</pre></td></tr></table>";
+				msg += "<table><tr class-basic='test-source'><th>Source: </th><td><pre>" + escapeText( source ) + "</pre></td></tr></table>";
 			}
 		}
 		runLoggingCallbacks( "log", QUnit, details );
@@ -928,24 +928,24 @@ extend( QUnit, {
 			};
 
 		message = escapeText( message ) || ( result ? "okay" : "failed" );
-		message = "<span class='test-message'>" + message + "</span>";
+		message = "<span class-basic='test-message'>" + message + "</span>";
 		output = message;
 
 		if ( !result ) {
 			expected = escapeText( QUnit.jsDump.parse(expected) );
 			actual = escapeText( QUnit.jsDump.parse(actual) );
-			output += "<table><tr class='test-expected'><th>Expected: </th><td><pre>" + expected + "</pre></td></tr>";
+			output += "<table><tr class-basic='test-expected'><th>Expected: </th><td><pre>" + expected + "</pre></td></tr>";
 
 			if ( actual !== expected ) {
-				output += "<tr class='test-actual'><th>Result: </th><td><pre>" + actual + "</pre></td></tr>";
-				output += "<tr class='test-diff'><th>Diff: </th><td><pre>" + QUnit.diff( expected, actual ) + "</pre></td></tr>";
+				output += "<tr class-basic='test-actual'><th>Result: </th><td><pre>" + actual + "</pre></td></tr>";
+				output += "<tr class-basic='test-diff'><th>Diff: </th><td><pre>" + QUnit.diff( expected, actual ) + "</pre></td></tr>";
 			}
 
 			source = sourceFromStacktrace();
 
 			if ( source ) {
 				details.source = source;
-				output += "<tr class='test-source'><th>Source: </th><td><pre>" + escapeText( source ) + "</pre></td></tr>";
+				output += "<tr class-basic='test-source'><th>Source: </th><td><pre>" + escapeText( source ) + "</pre></td></tr>";
 			}
 
 			output += "</table>";
@@ -973,18 +973,18 @@ extend( QUnit, {
 			};
 
 		message = escapeText( message ) || "error";
-		message = "<span class='test-message'>" + message + "</span>";
+		message = "<span class-basic='test-message'>" + message + "</span>";
 		output = message;
 
 		output += "<table>";
 
 		if ( actual ) {
-			output += "<tr class='test-actual'><th>Result: </th><td><pre>" + escapeText( actual ) + "</pre></td></tr>";
+			output += "<tr class-basic='test-actual'><th>Result: </th><td><pre>" + escapeText( actual ) + "</pre></td></tr>";
 		}
 
 		if ( source ) {
 			details.source = source;
-			output += "<tr class='test-source'><th>Source: </th><td><pre>" + escapeText( source ) + "</pre></td></tr>";
+			output += "<tr class-basic='test-source'><th>Source: </th><td><pre>" + escapeText( source ) + "</pre></td></tr>";
 		}
 
 		output += "</table>";
@@ -1270,11 +1270,11 @@ function done() {
 			"Tests completed in ",
 			runtime,
 			" milliseconds.<br/>",
-			"<span class='passed'>",
+			"<span class-basic='passed'>",
 			passed,
-			"</span> assertions of <span class='total'>",
+			"</span> assertions of <span class-basic='total'>",
 			config.stats.all,
-			"</span> passed, <span class='failed'>",
+			"</span> passed, <span class-basic='failed'>",
 			config.stats.bad,
 			"</span> failed."
 		].join( "" );
